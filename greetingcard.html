@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Advanced Greeting App</title>
+  <style>
+    body {
+      font-family: Arial;
+      padding: 20px;
+      transition: background-color 0.5s ease;
+    }
+
+    input, button, select {
+      margin-top: 10px;
+      padding: 8px;
+      font-size: 16px;
+    }
+
+    #greeting {
+      margin-top: 20px;
+      font-weight: bold;
+      opacity: 0;
+      transition: opacity 0.8s ease-in, color 0.8s ease-in;
+    }
+
+    #greeting.show {
+      opacity: 1;
+      color: green;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>Enter Your Name</h2>
+
+  <select id="title">
+    <option value="">Select option</option>
+    <option value="Mr.">MR</option>
+    <option value="Ms.">MS</option>
+    <option value="Dr.">DR</option>
+    <option value="Prof.">PROF</option>
+  </select>
+  <br>
+
+  <input type="text" id="inputbtn" placeholder="Enter Your Name"/>
+  <br>
+
+  <button type="button" id="greetbtn">Click Me</button>
+  <p id="greeting"></p>
+
+  <script>
+    const input=document.getElementById("inputbtn")
+    const button=document.getElementById("greetbtn")
+    const msg = document.getElementById("greeting");
+    const select=document.getElementById("title");
+    function greetingtime(){
+        const hours=new Date().getHours();
+        if(hours<12){
+            return "Good Morning"
+        }else if(hours<16){
+            return "Good AfterNoon"
+        }else{
+            return "Good Evening"
+        }
+    }
+    function capitalize(name){
+        return name.charAt(0).toUpperCase()+name.slice(1).toLowerCase()
+    }
+    function greetingcolor(){
+        const hour=new Date().getHours()
+        if(hour<12) document.body.style.backgroundColor="aqua"
+        else if(hour<16) document.body.style.backgroundColor="brown"
+        else document.body.style.backgroundColor="darkgray"
+    }
+    button.addEventListener("click",function(){
+        const name=input.value.trim()
+        const title=select.value
+         msg.classList.remove("show");
+         if(name){
+            const greet=greetingtime();
+            const vcap=capitalize(name);
+            msg.textContent=`${greet} ${title} ${vcap}!✋`
+         }else{
+            msg.textContent="Enter Your Name!"
+         }
+         void msg.offsetWidth;
+         msg.classList.add("show")
+         greetingcolor()
+         
+         
+    })
+    greetingcolor()
+    </script>
+</body>
+</html>
