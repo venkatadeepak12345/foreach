@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Toggle Login & Signup</title>
+  <style>
+    .form-box { display: none; max-width: 300px; margin: 20px auto; }
+    .form-box.active { display: block; }
+    .error { color: red; font-size: 0.85em; }
+    input:invalid { border-color: red; }
+    button { margin-top: 10px; }
+    .toggle-buttons { text-align: center; margin-top: 20px; }
+  </style>
+</head>
+<body>
+  <div class="toggle-buttons">
+    <button onclick="showForm('login')">Login</button>
+    <button onclick="showForm('signup')">SignUp</button>
+  </div>
+
+  <form id="loginForm" class="form-box active">
+    <input type="text" id="loginEmail" placeholder="Email" required /><br>
+    <span id="loginEmailError" class="error"></span><br>
+    <input type="password" id="loginPassword" placeholder="Password" required /><br>
+    <span id="loginPasswordError" class="error"></span><br>
+    <button type="submit">Login</button>
+  </form>
+
+  <form id="signupForm" class="form-box">
+    <input type="text" id="signupEmail" placeholder="Email" required /><br>
+    <span id="signupEmailError" class="error"></span><br>
+    <input type="password" id="signupPassword" placeholder="Password" required /><br>
+    <span id="signupPasswordError" class="error"></span><br>
+    <input type="password" id="confirmPassword" placeholder="Confirm Password" required /><br>
+    <span id="confirmPasswordError" class="error"></span><br>
+    <label><input type="checkbox" id="terms" required /> I agree to the terms</label><br>
+    <span id="termsError" class="error"></span><br>
+    <button type="submit">SignUp</button>
+  </form>
+
+  <script>
+    function showForm(type) {
+      document.getElementById('loginForm').classList.remove('active');
+      document.getElementById('signupForm').classList.remove('active');
+      document.getElementById(type + 'Form').classList.add('active');
+    }
+
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    // Login
+   const loginEmail=document.getElementById("loginEmail")
+  const loginPassword=document.getElementById("loginPassword");
+  loginEmail.addEventListener("input",()=>{
+    const err=document.getElementById("loginEmailError")
+    const valid=emailRegex.test(loginEmail.value.trim());
+    err.textContent=valid?"":"Invalid Email Format!"
+    
+  })
+  loginPassword.addEventListener("input",()=>{
+    const err=document.getElementById("loginPasswordError");
+    err.textContent=loginPassword.value.length>=6?"":"PassWord Must be atleast 6 characters!"
+  })
+  document.getElementById("loginForm").addEventListener("submit",(e)=>{
+    e.preventDefault();
+    const emailValid=emailRegex.test(loginEmail.value.trim())
+    const passValid=loginPassword.value.length>=6
+    if(emailValid&&passValid){
+        alert("Login Success!")
+    }else{
+        alert("Error Message!")
+        
+    }
+
+  })
+   
+
+    // Signup
+    const email=document.getElementById("signupEmail")
+    const password=document.getElementById("signupPassword")
+    const confirmpassword=document.getElementById("ConfirmPassword")
+    const terms = document.getElementById("terms");
+
+    email.addEventListener("input",()=>{
+        const err=document.getElementById("signupEmailError")
+        const valids=emailRegex.test(email.value.trim())
+        err.textContent=valids?"":"Invalid Email format!"
+    })
+    password.addEventListener("input",()=>{
+        const err=document.getElementById("signupPasswordError");
+        err.textContent=password.value.length>=6?"":"Password must be atleast 6 characters!"
+    })
+    confirmPassword.addEventListener("input", () => {
+      const err = document.getElementById("confirmPasswordError");
+      err.textContent = password.value===confirmpassword.value ? "" : "Passwords do not match";
+    });
+
+    terms.addEventListener("change", () => {
+      const err = document.getElementById("termsError");
+      err.textContent = terms.checked ? "" : "You must agree to the terms";
+    });
+
+    document.getElementById("signupForm").addEventListener("submit",(e)=>{
+        e.preventDefault();
+        const emailvalid=emailRegex.test(email.value.trim())
+        const passvalid=password.value.length>=6
+        const confirmpassvalid=confirmpassword.value===password.value
+        const termsChecked=terms
+    })
+
+      if (emailValid && passValid && passMatch && termsChecked) {
+        alert("Signup successful!");
+      } else {
+        alert("Please fix signup errors.");
+      }
+    
+  </script>
+</body>
+</html>
