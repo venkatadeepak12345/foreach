@@ -10,109 +10,117 @@
     input:invalid { border-color: red; }
     button { margin-top: 10px; }
     .toggle-buttons { text-align: center; margin-top: 20px; }
+    #messageBox { text-align: center; font-weight: bold; margin-top: 15px; color: green; }
   </style>
 </head>
 <body>
-  <div class="toggle-buttons">
-    <button onclick="showForm('login')">Login</button>
-    <button onclick="showForm('signup')">SignUp</button>
-  </div>
+<div class="toggle-buttons">
+  <button onclick="showForm('login')">Login</button>
+  <button onclick="showForm('signup')">SignUp</button>
+  
+</div>
+<form id="loginForm" class="form-box active">
+  <input type="text" id="loginemail" placeholder="Email" required/><br>
+  <span id="loginemailerror" class="error"></span><br>
+  <input type="password" id="loginpassword" placeholder="PassWord" required/><br>
+  <span id="loginpassworderror" class="error"></span><br>
+  <button type="submit">Click Me</button>
+</form>
+<form id="signupForm" class="form-box">
+  <input type="text" id="signupemail" placeholder="Email" required/><br>
+  <span id="signupemailerror" class="error"></span><br>
+  <input type="password" id="signuppassword" placeholder="PassWord" required/><br>
+  <span id="signuppassworderror" class="error"></span><br>
+  <input type="password" id="signupconfirmpassword" placeholder="ConfirmPassWord" required/><br>
+  <span id="confirmpassworderror" class="error"></span><br>
+  <label><input type="checkbox" id="signupterms" required /> I agree to the term</label>
+  <span id="signuptermserror" class="error"></span><br>
+  <button type="submit">Sign Up</button>
 
-  <form id="loginForm" class="form-box active">
-    <input type="text" id="loginEmail" placeholder="Email" required /><br>
-    <span id="loginEmailError" class="error"></span><br>
-    <input type="password" id="loginPassword" placeholder="Password" required /><br>
-    <span id="loginPasswordError" class="error"></span><br>
-    <button type="submit">Login</button>
-  </form>
-
-  <form id="signupForm" class="form-box">
-    <input type="text" id="signupEmail" placeholder="Email" required /><br>
-    <span id="signupEmailError" class="error"></span><br>
-    <input type="password" id="signupPassword" placeholder="Password" required /><br>
-    <span id="signupPasswordError" class="error"></span><br>
-    <input type="password" id="confirmPassword" placeholder="Confirm Password" required /><br>
-    <span id="confirmPasswordError" class="error"></span><br>
-    <label><input type="checkbox" id="terms" required /> I agree to the terms</label><br>
-    <span id="termsError" class="error"></span><br>
-    <button type="submit">SignUp</button>
-  </form>
-
-  <script>
-    function showForm(type) {
-      document.getElementById('loginForm').classList.remove('active');
-      document.getElementById('signupForm').classList.remove('active');
-      document.getElementById(type + 'Form').classList.add('active');
-    }
-
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
-    // Login
-   const loginEmail=document.getElementById("loginEmail")
-  const loginPassword=document.getElementById("loginPassword");
-  loginEmail.addEventListener("input",()=>{
-    const err=document.getElementById("loginEmailError")
-    const valid=emailRegex.test(loginEmail.value.trim());
-    err.textContent=valid?"":"Invalid Email Format!"
-    
-  })
-  loginPassword.addEventListener("input",()=>{
-    const err=document.getElementById("loginPasswordError");
-    err.textContent=loginPassword.value.length>=6?"":"PassWord Must be atleast 6 characters!"
-  })
-  document.getElementById("loginForm").addEventListener("submit",(e)=>{
-    e.preventDefault();
-    const emailValid=emailRegex.test(loginEmail.value.trim())
-    const passValid=loginPassword.value.length>=6
-    if(emailValid&&passValid){
-        alert("Login Success!")
+</form>
+ <div id="messageBox"></div>
+<script>
+  
+  function showForm(type){
+    document.getElementById("loginForm").classList.remove('active')
+    document.getElementById("signupForm").classList.remove('active')
+    document.getElementById(type+'Form').classList.add('active')
+    document.getElementById("messageBox").textContent = "" // Clear message when switching
+  }
+   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+   const email=document.getElementById("loginemail")
+   const pass=document.getElementById("loginpassword")
+   email.addEventListener("input",()=>{
+    const err=document.getElementById("loginemailerror")
+    const valids=emailRegex.test(email.value.trim())
+    err.textContent=valids?"":"Invalid Email Format!"
+   })
+   pass.addEventListener("input",()=>{
+    const err=document.getElementById("loginpassworderror")
+    err.textContent=pass.value.length>=6?"":"Password must be 6 characters!"
+   })
+   document.getElementById("loginForm").addEventListener("submit",(e)=>{
+    e.preventDefault()
+    const emailvalids=emailRegex.test(email.value.trim())
+    const passvalids=pass.value.length>=6;
+    if(emailvalids && passvalids){
+      alert("Login Success!")
     }else{
-        alert("Error Message!")
-        
+      alert("Please fill out these fields!")
     }
+   })
+   //signup
+   const signem=document.getElementById("signupemail")
+   const signpass=document.getElementById("signuppassword")
+   const signcon=document.getElementById("signupconfirmpassword")
+   const signterms=document.getElementById("signupterms")
+   signem.addEventListener("input",()=>{
+    const err=document.getElementById("signupemailerror")
+    const valid=emailRegex.test(signem.value.trim())
+    err.textContent=valid?"":"Invalid Email Format!"
 
-  })
+   })
+   signpass.addEventListener("input",()=>{
+    const err=document.getElementById("signuppassworderror")
+    err.textContent=signpass.value.length>=6?"":"Password must be 06 characters!"
+   })
+   signcon.addEventListener("input",()=>{
+    const err=document.getElementById("confirmpassworderror")
+    err.textContent=signcon.value===signpass.value?"":"Password do not match!"
+   })
+   signterms.addEventListener("change",()=>{
+
+    const err=document.getElementById("signuptermserror")
+    err.textContent=signterms.checked ? "" : "You must agree to the terms"
+   })
+   document.getElementById("signupForm").addEventListener("submit",(e)=>{
+    e.preventDefault()
+    const emailvalid=emailRegex.test(signem.value.trim())
+    const passvalid=signpass.value.length>=6;
+    const convalids=signcon.value===signpass.value;
+    const termsvalid=signterms.checked;
+    const messageBox=document.getElementById("messageBox")
+    if(emailvalid && passvalid && convalids && termsvalid){
+      let countdown=5;
+      messageBox.textContent=`Signup Success! Redirecting the ${countdown} in 5 Seconds!`
+      const intervalvalid=setInterval(()=>{
+        countdown--
+        if(countdown>0){
+          messageBox.textContent=`Signup Success! Redirecting the ${countdown} in 5 Seconds!`
+        }else{
+          clearInterval(intervalvalid)
+        }
+      },1000)
+      setTimeout(()=>{
+        messageBox.textContent = "Redirected to Login!";
+        showForm("login")
+      },5000)
+    }else{
+      alert("Please fill all these fields!")
+    }
+   })
    
 
-    // Signup
-    const email=document.getElementById("signupEmail")
-    const password=document.getElementById("signupPassword")
-    const confirmpassword=document.getElementById("ConfirmPassword")
-    const terms = document.getElementById("terms");
-
-    email.addEventListener("input",()=>{
-        const err=document.getElementById("signupEmailError")
-        const valids=emailRegex.test(email.value.trim())
-        err.textContent=valids?"":"Invalid Email format!"
-    })
-    password.addEventListener("input",()=>{
-        const err=document.getElementById("signupPasswordError");
-        err.textContent=password.value.length>=6?"":"Password must be atleast 6 characters!"
-    })
-    confirmPassword.addEventListener("input", () => {
-      const err = document.getElementById("confirmPasswordError");
-      err.textContent = password.value===confirmpassword.value ? "" : "Passwords do not match";
-    });
-
-    terms.addEventListener("change", () => {
-      const err = document.getElementById("termsError");
-      err.textContent = terms.checked ? "" : "You must agree to the terms";
-    });
-
-    document.getElementById("signupForm").addEventListener("submit",(e)=>{
-        e.preventDefault();
-        const emailvalid=emailRegex.test(email.value.trim())
-        const passvalid=password.value.length>=6
-        const confirmpassvalid=confirmpassword.value===password.value
-        const termsChecked=terms
-    })
-
-      if (emailValid && passValid && passMatch && termsChecked) {
-        alert("Signup successful!");
-      } else {
-        alert("Please fix signup errors.");
-      }
-    
-  </script>
-</body>
+</script>
+  </body>
 </html>
