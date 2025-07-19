@@ -4,7 +4,7 @@ const students = [
     marks: [
       { subject: "Math", score: 90 },
       { subject: "Science", score: 85 },
-      { subject: "English", score: 88 }
+      { subject: "English", score: 87 }
     ]
   },
   {
