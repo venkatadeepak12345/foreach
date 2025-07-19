@@ -1,58 +1,88 @@
+//✅ 1. Function Declaration
 function greet(name){
     return `Hello ${name}!`
 }
 console.log(greet("alice"));
-function login(username,password){
+//function expression
+const sayhi=function greet(name,age){
+    return `Hello ${name} age of ${age} years old!`
+}
+console.log(sayhi("alice",24));
+//arrow functions
+const grret=(name,age)=>{
+    return `Hello ${name} age of ${age} years old!`
+}
+console.log(grret("alice","3"));
+const login=(username,password)=>{
     return username.includes("@")&&password.length>=6
 }
-console.log(login("user@gmail.com","123444"));
-function ecommerce(price,tax){
+console.log(login("admin@gmail.com","123456"));
+const ecommerce=(price,tax)=>{
     return price+price*tax
+
 }
-console.log(ecommerce(1000,0.9));
-function iseven(num){
-    return num%2===0
+console.log(ecommerce(100,0.4));
+const ecommerces=(price,tax)=>{
+    return price-price*tax
 }
-console.log(iseven(5));
-function mess(user,message){
-    console.log(`To${user}: to get a new ${message}`);
-    
+console.log(ecommerces(100,0.2));
+const evenorodd=(num)=>{
+    return num%2===0?"even":"odd"
 }
-mess("John","YOU HAVE A NICE DAY!")
-function flighttimings(departuretime,arrivialtime){
-    return arrivialtime-departuretime
+console.log(evenorodd(3));
+const rectangle=(area,width)=>{
+    return area*width
 }
-console.log(flighttimings(10,16));
-function student(grade){
-    if(grade>90){
-        return "A"
-    }else if(grade>78){
+console.log(rectangle(5,5))
+const triangle=(areas,wit)=>{
+    return 0.5*areas*wit
+}
+console.log(triangle(55,19));
+const studentsmarks=(grade)=>{
+    if(grade>=89){
+        return"A"
+    }else if(grade>=70){
         return "B"
     }else{
-        return "C"
+        return 'C'
     }
 }
-console.log(student(99));
-function presentage(birthage){
-    const curage=new Date().getFullYear()
-    const hours=curage-birthage
-    const min=hours*365*24*60*60
+console.log(studentsmarks(60));
+const currentage=(birthage)=>{
+    const age=new Date().getFullYear()
+    const overall=age-birthage
+    const min=overall*365
+   
     return min
-}
-console.log(presentage(2009));
 
-function rectangle(area,width){
-    return 2*(area*width)
+    
 }
-console.log(rectangle(2,2));
-function areatriangle(base,he){
-    return 1/2*base*he
+console.log(currentage(2001));
+const addtask=(taskadded,tasks)=>{
+    taskadded.push(tasks)
+    return taskadded
 }
-console.log(areatriangle(5,5));
-function square(side,sides){
-    return side*sides
+console.log(addtask(["walk"],"dog"));
+function sendNotification(user, message) {
+    console.log(`To:${user} send message to the ${message}`);
+    
 }
-console.log(square(4,4));
+sendNotification("aice","sjijis")
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

@@ -1,21 +1,4 @@
-const departments=[
-    {
-        name:"Engineering",
-        Employees:[{name:"Tata",Experience:5},
-            {name:"Satya",Experience:2},
-        ],
-    },
-    
-        {
-        name:"Marketing",
-        Employees:[{name:"Mahesh",Experience:4},
-            {name:"Hema",Experience:1},
-        ],
-    },
-     
-    
 
-]
 const department = [
   {
     name: "Engineering",
@@ -116,8 +99,8 @@ const overall=stores.flatMap((st)=>{
     .map((ov)=>{
         return{
             Name:ov.name,
-            ProductsPrice:ov.price,
-            StoreName:st.name
+          price:ov.price,
+          productName:st.name
         }
     })
 })
@@ -186,6 +169,7 @@ const luggage=flights.flatMap((lu)=>{
     
 })
 console.log(luggage);
+
 
 
 
