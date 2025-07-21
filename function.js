@@ -7,6 +7,9 @@ console.log(greet("alice"));
 const sayhi=function greet(name,age){
     return `Hello ${name} age of ${age} years old!`
 }
+
+
+
 console.log(sayhi("alice",24));
 //arrow functions
 const grret=(name,age)=>{
