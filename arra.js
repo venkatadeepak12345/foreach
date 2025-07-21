@@ -30,6 +30,7 @@ const listofstudents=studentsli.flatMap((stude)=>{
     })
 })
 console.log(listofstudents);
+
 const department = [
   {
     name: "Engineering",
