@@ -12,6 +12,12 @@ console.log(login("user@example.com","123455"));
 function ecommerce(price,tax){
     return price+ price*tax
 }
+
+
+
+
+
+
 console.log(ecommerce(100,0.18));
 //send a message to user
 function sendNotification(user, message) {
