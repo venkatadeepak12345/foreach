@@ -45,6 +45,7 @@ const department = [
       { name: "Mahesh", Experience: 4 },
       { name: "Hema", Experience: 1 }
     ]
+    
   }
 ];
 const departments=department.flatMap((sal)=>{
