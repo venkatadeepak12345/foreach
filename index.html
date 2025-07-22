@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML FORMS</title>
+</head>
+<body>
+    <form>
+        <!---Name-->
+        <label for="name">Name:</label>
+        <input type="text" name="name" id="name" placeholder="Enter Your Name"/><br><br>
+        <!---Email-->
+        <label for="email">Email:</label>
+        <input type="email" id="email" placeholder="Enter Your Email" name="email"/><br><br>
+        <!--Age-->
+        <label for="age">Age:</label>
+        <input type="number" id="number" placeholder="Age" name="Age" min="18" max="99"/><br><br>
+        <!--PassWord-->
+        <label for="--PassWord--">PassWord:</label>
+        <input type="password" name="password" placeholder="PassWord" minlength="6"/><br><br>
+        <!--Phone Number-->
+        <label for="number">PhoneNumber(+Country Phone Code):</label>
+        <input type="tel" id="number" placeholder="Enter Phone Number" name="Phone"/><br><br>
+        <!--Select DropDown-->
+        <select id="country" name="country">
+            <option value="">Select Country</option>
+             <option value="india">INDIA</option>
+              <option value="uk">UK</option>
+               <option value="usa">USA</option>
+        </select>
+        <br><br>
+        <label>
+            <input type="checkbox" name="agree"/>
+                  I accept the terms and conditions
+
+        </label>
+        <br><br>
+        <button type="submit">Submit</button>
+    </form>
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Large Table</title>
+  <style>
+    .table-wrapper {
+      max-height: 300px;
+      overflow-y: auto;
+      border: 1px solid #ccc;
+    }
+
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      min-width: 600px;
+    }
+
+    th, td {
+      border: 1px solid #aaa;
+      padding: 8px;
+      text-align: left;
+    }
+
+    thead th {
+      position: sticky;
+      top: 0;
+      background-color: #f2f2f2;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>Student Data Table</h2>
+
+  <div class="table-wrapper">
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Age</th>
+          <th>Country</th>
+          <th>Phone</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>1</td><td>Deepak</td><td>deepak@example.com</td><td>24</td><td>India</td><td>+91-9618551756</td></tr>
+        <tr><td>2</td><td>John</td><td>john@example.com</td><td>30</td><td>USA</td><td>+1-5551234567</td></tr>
+        <tr><td>3</td><td>Aisha</td><td>aisha@example.com</td><td>22</td><td>UK</td><td>+44-7911123456</td></tr>
+        <tr><td>4</td><td>Maria</td><td>maria@example.com</td><td>28</td><td>Australia</td><td>+61-412345678</td></tr>
+        <tr><td>5</td><td>Liam</td><td>liam@example.com</td><td>26</td><td>USA</td><td>+1-5559998888</td></tr>
+        <!-- Add as many rows as needed -->
+      </tbody>
+    </table>
+  </div>
+
+</body>
+</html>
